@@ -1,0 +1,59 @@
+{
+  "technicals": [
+    {
+      "adx": 15.488753670099674,
+      "date_time": datetime.datetime(2018,
+      1,
+      12,
+      0,
+      0,
+      tzinfo=tzutc()),
+      "di_neg": 19.745423515800166,
+      "di_pos": 35.79930091446313
+    },
+    {
+      "adx": 14.456918246366474,
+      "date_time": datetime.datetime(2018,
+      1,
+      11,
+      0,
+      0,
+      tzinfo=tzutc()),
+      "di_neg": 21.2340286088014,
+      "di_pos": 31.71529146757023
+    },
+    {
+      "adx": 14.046304570548488,
+      "date_time": datetime.datetime(2018,
+      1,
+      10,
+      0,
+      0,
+      tzinfo=tzutc()),
+      "di_neg": 22.1266236104184,
+      "di_pos": 28.879942007993943
+    },
+    {
+      "adx": 14.10832059281145,
+      "date_time": datetime.datetime(2018,
+      1,
+      9,
+      0,
+      0,
+      tzinfo=tzutc()),
+      "di_neg": 21.732723481206545,
+      "di_pos": 30.187439971518444
+    },
+    {
+      "adx": 13.940955145708548,
+      "date_time": datetime.datetime(2018,
+      1,
+      8,
+      0,
+      0,
+      tzinfo=tzutc()),
+      "di_neg": 21.19445188564059,
+      "di_pos": 31.84848377609699
+    }
+  ]
+}

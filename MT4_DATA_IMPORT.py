@@ -1,0 +1,10 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Fri Jan  8 20:03:31 2021
+
+@author: alexx
+"""
+#INITRINIO MODULE API CALLS 
+#TECHINCAL DATA CALLS FOR PROBABILITIES 
+
+INTR_SECRET_API_KEY = "OmRmMDQ1NjhmNTlkNzgzYzg1YmVjYTI2NTVjMjFkNjg2"
