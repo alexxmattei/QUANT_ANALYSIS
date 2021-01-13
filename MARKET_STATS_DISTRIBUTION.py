@@ -58,7 +58,7 @@ import sys
 sys.path.append is needed in order to import other files as packages 
 as we do this into out folder we can rename our packages and use them for calculations
 '''
-sys.path.append('D:\ProiectePersonale\PythonPrograms\MarketAnalyzer')
+sys.path.append('D:\ProiectePersonale\PythonPrograms\QUANT_FL\QUANT_ANALYSIS')
 #brokerage api connection and function
 import MARKET_OPENX_CONN_API as openx_api
 #technical analysis api connection and data
