@@ -348,7 +348,7 @@ def main():
     sclient.subscribeTrades()
     
     # subscribe for prices
-    eurgbp = sclient.subscribePrices(['EURUSD'])
+    eurgbp = sclient.subscribePrices(['GBPJPY'])
     print(str(resp))
 
     # subscribe for profits

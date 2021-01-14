@@ -132,13 +132,5 @@ def plot_security(ticker):
     data.plot(figsize=(10, 6));
     
     
-def main():
-    plot_GBPJPY_AssetData(GBPJPY)
-    plot_firstMC_Sim()
-    plot_secondMC_Sim()
-    plot_security('AAPL')
-    
-if __name__ == "__main__":
-    main()	
 
     

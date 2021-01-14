@@ -9,6 +9,7 @@ import numpy as np
 import random as rm 
 
 import time, threading
+import sys
 
 #starile posibile in piata forex
 states = ["consolidation", "uptrend", "downtrend"]
@@ -17,18 +18,15 @@ states = ["consolidation", "uptrend", "downtrend"]
 consolidation = "consolidation"
 uptrend = "uptrend"
 downtrend = "downtrend"
-#numele tranzitiilor si secventele in care pot aparea 
+#transition names and the order of them surfacing 
 tName = [["CC", "CD", "CU"], ["DC", "DD", "DU"], ["UC", "UD", "UU"]]
-#matricea de tranzitii 
-tMatrix = [
-    [0.344006453704011,0.5266567943788216,0.12933675191716737],
-    [0.12933675191716737,0.344006453704011,0.5266567943788216],
-    [0.344006453704011, 0.5266567943788216, 0.12933675191716737]
-    ]
+#transpose matrix
+tMatrix = [[0.1, 0.2, 0.7], [0.1, 0.2, 0.7], [0.1, 0.2, 0.7]]
 
 consolidation = "consolidation"
 uptrend = "uptrend"
 downtrend = "downtrend"
+period = 2
 
 def verifyTMatrix():
     if(sum(tMatrix[0]) + sum(tMatrix[1]) + sum(tMatrix[2])) != 3:
@@ -78,7 +76,7 @@ def forecast_State(timeframe, curr_state):
                 curr_state = "uptrend"
                 state_list.append(curr_state)
         elif curr_state == "uptrend":
-            chenge_state = np.random.choice(tName[2], replace = True, p = tMatrix[2])
+            change_state = np.random.choice(tName[2], replace = True, p = tMatrix[2])
             if change_state == "UC":
                 probability = probability *  tMatrix[2][0]
                 curr_state = "consolidation"
@@ -113,8 +111,8 @@ def runTestEndingState(tries, start_state):
     curr_final_state = []
     
     for it in range(1, tries):
-        trial_list.append(forecast_State(2, start_state))
-        print(forecast_State(2, start_state))
+        trial_list.append(forecast_State(period, start_state))
+        #print(forecast_State(2, start_state))
         
 
     
@@ -137,19 +135,16 @@ def runTestEndingState(tries, start_state):
     print("Downtrend: " + str(perc_downtrend) + "%")
                 
     
-    
-def main():
-    
+  
+def run_markov():
     print("The state of the tMatrix is the following: ")
     verifyTMatrix()
     
-    start_state = consolidation
-    forecast_State(4, start_state)
+    start_state = uptrend 
+    forecast_State(period, start_state)
     tries = 1000
     
     print("When starting from the " + start_state + " state is: ")
     runTestEndingState(tries, start_state)
-    
-    
-if __name__ == "__main__":
-    main()
+
+  

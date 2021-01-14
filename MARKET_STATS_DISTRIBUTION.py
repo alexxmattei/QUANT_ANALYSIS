@@ -44,6 +44,7 @@ ax.set(xlabel='Binomial Distribution', ylabel='Frequency')
 
 import requests
 import statistics 
+import random
 import matplotlib.pyplot as plt
 import numpy as np 
 import yfinance as yf
@@ -69,6 +70,8 @@ import MC_RISK_ASSESMENT as mc
 import MARKET_VISUALIZER as markov
 #historic data parsed from csv 
 import MARKET_ANALYZER as hist_parsed
+
+stock_beta = 1.72
 
 '''
 import market_openx_conn_api as api
@@ -106,44 +109,78 @@ def plot_beta_ind(x_range, a, b, mu, sigma = 1, cdf = True, **kwargs):
     x = x_range 
 
 
-X = ss.beta(1, 3) 
-  
-def return_transpose():
-    t = markov.tMatrix
+#run probability for tMatrix 
+def set_transpose_values(stock_beta):
+    tMatr = markov.tMatrix
+    
     p = calc_p()
+    exp_beta = stock_beta**stock_beta
+    x = ss.binom(14, p)
+    #normal distribution where mean is market beta and sigma is 1 as in prevous 
+    var = random.normalvariate(exp_beta, 1)
+    CC = x.cdf(var)
+    x = ss.binom(14, p)
+    s_var = random.normalvariate(stock_beta, 1)
+    CD = x.cdf(s_var)
+    CD = abs(CD)
+    CC = abs(CC)
+    CU = 1 - CC - CD
+    
+    y = ss.binom(14, p)
+    var = random.normalvariate(exp_beta, 1)
+    DC = y.cdf(var)
+    y = ss.binom(14, p)
+    s_var = random.normalvariate(stock_beta, 1)
+    DD = y.cdf(s_var)
+    DC = abs(DC)
+    DD = abs(DD)
+    DU = 1 - DC - DD
+    
+    z = ss.binom(14, p)
+    var = random.normalvariate(exp_beta, 1)
+    UC = z.cdf(var)
+    z = ss.binom(14, p)
+    s_var = random.normalvariate(stock_beta, 1)
+    UD = z.cdf(s_var)
+    UC = abs(UC)
+    UD = abs(UD)
+    UU = 1 - UC - UD
+    
+    tMatr[0][0] = CC
+    tMatr[0][1] = CD
+    tMatr[0][2] = CU
+    print(CC, CD, CU, CC + CD + CU)
+    
+    tMatr[1][0] = DC
+    tMatr[1][1] = DD
+    tMatr[1][2] = DU
+    print(DC, DD, DU, DC + DD + DU)
+    
+    tMatr[2][0] = UC
+    tMatr[2][1] = UD
+    tMatr[2][2] = UU
+    print(UC, UD, UU, UC + UD + UU)
+    
+    return tMatr
+    
+def return_transpose():
+    t = set_transpose_values(stock_beta)
+    return t
    
     
-
-            
-            
-'''
-def main():
-    calc_p()
-    mc.plot_security('AAPL')
-    
+def plt_beta_norm_dis(stock_beta):
+    nums = []  
+    sigma = 1
         
-    x = ss.binom(14, 1 - p)
-    UP = x.cdf(4)
-    CS = 1 - DN - UP
-    
-    i = 0
-    j = 0 
-    while i < 3:
-        var = random(0, 5)
-        while j < 3 :
-            X = ss.binom(14, p)
-            DN = X.cdf(var)
-            t[i][j] = 
-    
-    print(DN)
-    print(UP)
-    print(CS)
-    
-    
-    
-if __name__ == "__main__":
-    main()
-'''
+    for i in range(200):  
+        temp = random.normalvariate(stock_beta, sigma) 
+        nums.append(temp)  
+            
+    # plotting a graph  
+    plt.plot(nums)  
+    plt.show()   
+            
+
 
 
 
